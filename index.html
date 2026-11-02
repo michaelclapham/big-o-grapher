@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Big-O Grapher</title>
+<style>
+    main {
+        display: flex;
+        flex-direction: row;
+        width: 100%;
+    }
+
+    .left-col {
+        display: flex;
+        flex-direction: column;
+        background-color: darkblue;
+        color: white;
+        flex-shrink: 1;
+    }
+
+    .right-col {
+        display: flex;
+        flex-direction: column;
+        background-color: lightgrey;
+        flex-grow: 1;
+    }
+
+    #code-editor {
+        width: 50vh;
+        min-width: 100px;
+        min-height: 400px;
+    }
+
+    #run-once {
+        width: 100px;
+    }
+</style>
+</head>
+
+<body>
+<main>
+    <div class="left-col">
+        <h1>Code</h1>
+        <textarea id="code-editor">//Write Javascript here</textarea>
+    </div>
+    <div class="right-col">
+        <h1>Run stats</h1>
+        <button id="run-once">Run once</button>
+        <p id="run-once-runtime">Run once runtime: </p>
+    </div>
+</main>
+<script>
+    var runOnceButton = document.getElementById("run-once");
+    runOnceButton.onclick = () => {
+        console.log("Running code...");
+        var codeEditor = document.getElementById("code-editor");
+        var codeText = codeEditor.value;
+        var beforeTime = new Date().getTime();
+        var value = undefined;
+        try {
+            for (var i = 0; i < inputs.length; i++) {
+                value = eval(codeText);
+            }
+            
+        } catch (ex) {
+            console.log("Error running code ", ex);
+        }
+        
+        var afterTime = new Date().getTime();
+        var diff = afterTime - beforeTime;
+        console.log("Result: ", value);
+        console.log("Time taken to execute code ", diff);
+        var runOnceRuntimeLabel = document.getElementById("run-once-runtime");
+        runOnceRuntimeLabel.innerText = `Run once runtime: ${diff}ms`;
+    }
+</script>
+</body>
+
+</html>
